@@ -26,7 +26,7 @@ module SpecHelpers
       around do |example|
         run "rm -rf #{folder} && mkdir #{folder}"
         Dir.chdir folder do
-          `git init && git commit --allow-empty -am 'initial'` # so we never accidentally do commit to the current repo
+          `git init && echo '.bundle/' >> .gitignore && git add . && git commit -m 'initial'` # so we never accidentally do commit to the current repo
           example.call
         end
         run "rm -rf #{folder}"
